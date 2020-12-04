@@ -28,21 +28,26 @@ func parseInt(input string) int {
 	return number
 }
 
-func isSolution(n1, n2 int) {
+func isSolutionTwo(n1, n2 int) {
 	if n1+n2 == goal {
-		log.Fatalf("solution found %d, from %d and %d", n1*n2, n1, n2)
+		log.Fatalf("solution two found %d, from %d and %d", n1*n2, n1, n2)
 	}
 }
 
-// Solution i/o
-func Solution() {
+func isSolutionThree(n1, n2, n3 int) {
+	if n1+n2+n3 == goal {
+		log.Fatalf("solution three found %d, from %d and %d and %d", n1*n2*n3, n1, n2, n3)
+	}
+}
+
+// SolutionTwo i/o
+func SolutionTwo() {
 	input := setup()
 	largeNumbers := []int{}
 	smallNumbers := []int{}
-	start := parseInt(input[0])
 	for _, line := range input[1:] {
 		number := parseInt(line)
-		isSolution(start, number)
+		isSolutionTwo(parseInt(input[0]), number)
 		if number >= (goal / 2) {
 			largeNumbers = append(largeNumbers, number)
 		} else {
@@ -51,8 +56,34 @@ func Solution() {
 	}
 	for _, large := range largeNumbers {
 		for _, small := range smallNumbers {
-			isSolution(large, small)
+			isSolutionTwo(large, small)
 		}
 	}
-	log.Fatal("no solution found")
+	log.Fatal("no solution two found")
+}
+
+// SolutionThree i/o
+func SolutionThree() {
+	input := setup()
+	largeNumbers := []int{}
+	smallNumbers := []int{}
+	for _, line := range input {
+		number := parseInt(line)
+		if number >= (goal / 2) {
+			largeNumbers = append(largeNumbers, number)
+		} else {
+			smallNumbers = append(smallNumbers, number)
+		}
+	}
+	for _, large := range largeNumbers {
+		second := 0
+		for _, small := range smallNumbers {
+			if second == 0 && large+small < goal {
+				second = small
+				continue
+			}
+			isSolutionThree(large, second, small)
+		}
+	}
+	log.Fatal("no solution three found")
 }
