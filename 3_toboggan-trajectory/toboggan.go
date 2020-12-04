@@ -9,8 +9,8 @@ import (
 
 const tree = 35
 
-func setup() []string {
-	file, err := os.Open("./input.txt")
+func setup(path string) []string {
+	file, err := os.Open(path)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -25,8 +25,8 @@ func hitsTree(line string, location int) bool {
 }
 
 // PartOneSolution i/o
-func PartOneSolution() {
-	file := setup()
+func PartOneSolution(path string) int {
+	file := setup(path)
 	location := 0
 	total := 0
 	rightMove := 3
@@ -36,12 +36,12 @@ func PartOneSolution() {
 		}
 		location += rightMove
 	}
-	log.Fatalf("part one total: %d trees", total)
+	return total
 }
 
 // PartTwoSolution i/o
-func PartTwoSolution() {
-	file := setup()
+func PartTwoSolution(path string) int {
+	file := setup(path)
 	total := 1
 	input := []struct {
 		right int
@@ -60,5 +60,5 @@ func PartTwoSolution() {
 		}
 		total *= trees
 	}
-	log.Fatalf("part two total: %d", total)
+	return total
 }
