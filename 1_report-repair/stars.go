@@ -10,8 +10,8 @@ import (
 
 const goal = 2020
 
-func setup() []string {
-	file, err := os.Open("./input.txt")
+func setup(path string) []string {
+	file, err := os.Open(path)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -28,26 +28,30 @@ func parseInt(input string) int {
 	return number
 }
 
-func isSolutionTwo(n1, n2 int) {
+func isSolutionTwo(n1, n2 int) int {
 	if n1+n2 == goal {
-		log.Fatalf("solution two found %d, from %d and %d", n1*n2, n1, n2)
+		return n1 * n2
 	}
+	return 0
 }
 
-func isSolutionThree(n1, n2, n3 int) {
+func isSolutionThree(n1, n2, n3 int) int {
 	if n1+n2+n3 == goal {
-		log.Fatalf("solution three found %d, from %d and %d and %d", n1*n2*n3, n1, n2, n3)
+		return n1 * n2 * n3
 	}
+	return 0
 }
 
-// SolutionTwo i/o
-func SolutionTwo() {
-	input := setup()
+// SolutionPartOne i/o
+func SolutionPartOne(path string) int {
+	input := setup(path)
 	largeNumbers := []int{}
 	smallNumbers := []int{}
 	for _, line := range input[1:] {
 		number := parseInt(line)
-		isSolutionTwo(parseInt(input[0]), number)
+		if result := isSolutionTwo(parseInt(input[0]), number); result != 0 {
+			return result
+		}
 		if number >= (goal / 2) {
 			largeNumbers = append(largeNumbers, number)
 		} else {
@@ -56,15 +60,17 @@ func SolutionTwo() {
 	}
 	for _, large := range largeNumbers {
 		for _, small := range smallNumbers {
-			isSolutionTwo(large, small)
+			if result := isSolutionTwo(large, small); result != 0 {
+				return result
+			}
 		}
 	}
-	log.Fatal("no solution two found")
+	return 0
 }
 
-// SolutionThree i/o
-func SolutionThree() {
-	input := setup()
+// SolutionPartTwo i/o
+func SolutionPartTwo(path string) int {
+	input := setup(path)
 	largeNumbers := []int{}
 	smallNumbers := []int{}
 	for _, line := range input {
@@ -82,8 +88,10 @@ func SolutionThree() {
 				second = small
 				continue
 			}
-			isSolutionThree(large, second, small)
+			if result := isSolutionThree(large, second, small); result != 0 {
+				return result
+			}
 		}
 	}
-	log.Fatal("no solution three found")
+	return 0
 }
