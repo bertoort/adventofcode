@@ -16,8 +16,8 @@ type Content struct {
 	Password string
 }
 
-func setup() []string {
-	file, err := os.Open("./input.txt")
+func setup(path string) []string {
+	file, err := os.Open(path)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -66,8 +66,8 @@ func isValidPartTwoPassword(content Content) bool {
 }
 
 // PartOneSolution i/o
-func PartOneSolution() {
-	file := setup()
+func PartOneSolution(path string) int {
+	file := setup(path)
 	total := 0
 	for _, line := range file {
 		content := parseLine(line)
@@ -75,12 +75,12 @@ func PartOneSolution() {
 			total++
 		}
 	}
-	log.Fatalf("part one total: %d out of %d", total, len(file))
+	return total
 }
 
 // PartTwoSolution i/o
-func PartTwoSolution() {
-	file := setup()
+func PartTwoSolution(path string) int {
+	file := setup(path)
 	total := 0
 	for _, line := range file {
 		content := parseLine(line)
@@ -88,5 +88,5 @@ func PartTwoSolution() {
 			total++
 		}
 	}
-	log.Fatalf("part two total: %d out of %d", total, len(file))
+	return total
 }
