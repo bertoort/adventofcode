@@ -2,7 +2,6 @@ package solution
 
 import "testing"
 
-
 func TestRunSolution(t *testing.T) {
 	solution := Solution("./input.txt")
 	t.Fatalf("part one solution: %d", solution)

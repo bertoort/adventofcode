@@ -12,7 +12,7 @@ func TestRunSolution2(t *testing.T) {
 }
 func TestSolution(t *testing.T) {
 	output := Solution("./test-input.txt")
-	expected := 150
+	expected := 198
 
 	if output != expected {
 		t.Fatalf("part one fail: expected %d to equal %d", output, expected)
@@ -21,7 +21,7 @@ func TestSolution(t *testing.T) {
 
 func TestSolution2(t *testing.T) {
 	output := Solution2("./test-input.txt")
-	expected := 900
+	expected := 230
 
 	if output != expected {
 		t.Fatalf("part one fail: expected %d to equal %d", output, expected)

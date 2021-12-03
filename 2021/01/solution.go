@@ -26,7 +26,6 @@ func parseInt(input string) int {
 	return number
 }
 
-
 // Solution i/o
 func Solution(path string) int {
 	input := setup(path)
@@ -44,14 +43,12 @@ func Solution(path string) int {
 	return total
 }
 
-
-
 // Solution2 i/o
 func Solution2(path string) int {
 	input := setup(path)
 	total := 0
 	for i, line := range input {
-		if i == len(input) - 3 {
+		if i == len(input)-3 {
 			break
 		}
 		n1 := parseInt(line)

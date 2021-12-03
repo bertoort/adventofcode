@@ -18,7 +18,6 @@ func setup(path string) []string {
 	return strings.Split(string(b), "\n")
 }
 
-
 func parseInt(input string) int {
 	number, err := strconv.Atoi(input)
 	if err != nil {
@@ -26,7 +25,6 @@ func parseInt(input string) int {
 	}
 	return number
 }
-
 
 // Solution i/o
 func Solution(path string) int {
