@@ -32,3 +32,10 @@ func Solution(path string) int {
 	print(input)
 	return 0
 }
+
+// Solution2 i/o
+func Solution2(path string) int {
+	input := setup(path)
+	print(input)
+	return 0
+}
