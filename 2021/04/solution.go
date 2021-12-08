@@ -34,7 +34,7 @@ type Box struct {
 type Board struct {
 	numbers []Box
 	size    int
-	won	 bool
+	won     bool
 }
 
 func newBoards(input []string) []Board {

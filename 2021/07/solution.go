@@ -47,7 +47,7 @@ func Solution(path string) int {
 	mean, _ := stats.Median(data)
 	total := 0.0
 	for _, crab := range data {
-		total += math.Abs(crab-mean)
+		total += math.Abs(crab - mean)
 	}
 	return int(total)
 }
@@ -62,8 +62,8 @@ func Solution2(path string) int {
 	mean, _ := stats.Mean(data)
 	total := 0.0
 	for _, crab := range data {
-		n := math.Abs(crab-math.Floor(mean))
-		total += (n*(n+1))/2
+		n := math.Abs(crab - math.Floor(mean))
+		total += (n * (n + 1)) / 2
 	}
 	return int(total)
 }
