@@ -1,6 +1,7 @@
 package solution
 
 import (
+	"sort"
 	"strings"
 )
 
@@ -52,7 +53,7 @@ func getValidRanges(ranges []string) []Range {
 	validRanges := parseRanges(ranges)
 
 	// Sort ranges by start value
-	validRanges = sortRanges(validRanges)
+	validRanges = sortRanges2(validRanges)
 
 	// Merge overlapping or adjacent ranges
 	return mergeRanges(validRanges)
@@ -78,6 +79,13 @@ func sortRanges(ranges []Range) []Range {
 			}
 		}
 	}
+	return ranges
+}
+
+func sortRanges2(ranges []Range) []Range {
+	sort.Slice(ranges, func(i, j int) bool {
+		return ranges[i].start < ranges[j].start
+	})
 	return ranges
 }
 
